@@ -1,0 +1,80 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def APP_ID = "com.example.moviedb"
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "${APP_ID}"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
+
+    // Design
+    implementation 'androidx.cardview:cardview:' + rootProject.recyclerViewVersion
+    implementation 'androidx.recyclerview:recyclerview:' + rootProject.recyclerViewVersion
+    implementation 'androidx.annotation:annotation:' + rootProject.annotationVersion
+    implementation 'androidx.constraintlayout:constraintlayout:' + rootProject.constraintLayoutVersion
+
+    // RoomDatabase
+    implementation "androidx.room:room-rxjava2:$roomDatabaseVersion"
+    implementation "androidx.room:room-runtime:$roomDatabaseVersion"
+    kapt "androidx.room:room-compiler:$roomDatabaseVersion"
+
+    // Retrofit - OkHttp
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
+
+    // Rx
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Koin
+    implementation "org.koin:koin-android:$koinVersion"
+    implementation "org.koin:koin-androidx-viewmodel:$koinVersion"
+    implementation "org.koin:koin-androidx-scope:$koinVersion"
+
+    // Test
+    testImplementation 'junit:junit:' + rootProject.junitVersion
+    androidTestImplementation 'com.android.support.test:runner:' + rootProject.testRunnerVersion
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:' + rootProject.testEspressoVersion
+}
