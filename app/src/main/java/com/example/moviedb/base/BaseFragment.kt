@@ -13,7 +13,7 @@ import com.example.moviedb.BR
 abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewModel> : Fragment() {
     abstract val viewModel: ViewModel
     abstract val layoutRes: Int
-    private lateinit var viewBinding: ViewBinding
+    lateinit var viewBinding: ViewBinding
 
     abstract fun initComponents(view: ViewDataBinding)
 
