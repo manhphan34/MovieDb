@@ -10,6 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     companion object {
+        const val TAG_HOME_FRAGMENT = "TAG_HOME_FRAGMENT"
         fun newInstance(): HomeFragment = HomeFragment()
     }
 
@@ -18,6 +19,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val layoutRes: Int = R.layout.fragment_home
 
     override fun initComponents(view: ViewDataBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

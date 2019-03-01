@@ -30,14 +30,13 @@ class MainActivity : BaseActivity<MainViewModel>() {
 
     private fun replaceFragmentHome() {
         val homeFragment =
-            supportFragmentManager.findFragmentByTag(Constant.TAG_HOME_FRAGMENT) ?: HomeFragment.newInstance()
+            supportFragmentManager.findFragmentByTag(HomeFragment.TAG_HOME_FRAGMENT) ?: HomeFragment.newInstance()
         replaceFragmentInActivity(
             R.id.frame_container, homeFragment,
-            true, Constant.TAG_HOME_FRAGMENT
+            true, HomeFragment.TAG_HOME_FRAGMENT
         )
     }
 
     private fun replaceFragmentFavorite() {
-
     }
 }
