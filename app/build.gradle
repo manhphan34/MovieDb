@@ -39,6 +39,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.1.0-alpha02"
 
     // Design
+    implementation 'com.google.android.material:material:' + rootProject.materialVersion
     implementation 'androidx.cardview:cardview:' + rootProject.recyclerViewVersion
     implementation 'androidx.recyclerview:recyclerview:' + rootProject.recyclerViewVersion
     implementation 'androidx.annotation:annotation:' + rootProject.annotationVersion

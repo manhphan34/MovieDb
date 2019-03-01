@@ -7,7 +7,7 @@ buildscript {
         mavenCentral()
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$gradlePluginVersion"
@@ -21,7 +21,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
@@ -60,5 +60,7 @@ ext {
     junitVersion = '4.12'
     testRunnerVersion = '1.0.2'
     testEspressoVersion = '3.0.2'
+
+    materialVersion = '1.0.0'
 }
 
