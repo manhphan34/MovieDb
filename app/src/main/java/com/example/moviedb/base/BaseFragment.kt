@@ -29,7 +29,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewBinding.apply {
             lifecycleOwner = viewLifecycleOwner
-            setVariable(BR.viewmModel, viewModel)
+            setVariable(BR.viewModel, viewModel)
             executePendingBindings()
         }
         lifecycle.addObserver(viewModel)
