@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 class Movie {
-
+    @NonNull
     @SerializedName("id")
-    val id: Int? = null
+    val id: Int = 0
 
     @SerializedName("vote_average")
     val voteAverage: Double? = null

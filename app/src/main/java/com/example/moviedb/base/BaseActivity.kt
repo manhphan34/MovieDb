@@ -17,7 +17,6 @@ abstract class BaseActivity<ViewModel : BaseViewModel> : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(getLayout())
-        startKoin(this, modules)
         initComponent(savedInstanceState)
     }
 

@@ -13,19 +13,13 @@ class HomeViewModel(private val repository: MovieRepository) : BaseViewModel() {
     val movies: MutableLiveData<List<Movie>> = MutableLiveData()
 
     fun loadData(page: Int) {
-        repository.getMovies(page).observeOn(AndroidSchedulers.mainThread())
+        val disposable = repository.getMovies(page).observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe(
-                object : SingleObserver<List<Movie>> {
-                    override fun onSuccess(t: List<Movie>) {
-                        movies.value = t
-                    }
-
-                    override fun onSubscribe(d: Disposable) {
-                    }
-
-                    override fun onError(e: Throwable) {
-                    }
-                })
+            .subscribe({
+                movies.value = it
+            }, {
+                //do something
+            })
+        launchDisposable { disposable }
     }
 }

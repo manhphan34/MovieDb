@@ -1,6 +1,5 @@
 package com.example.moviedb.util.di
 
-import android.util.Log
 import com.example.moviedb.BuildConfig
 import com.example.moviedb.data.remote.api.ApiClient
 import com.example.moviedb.util.Constant
