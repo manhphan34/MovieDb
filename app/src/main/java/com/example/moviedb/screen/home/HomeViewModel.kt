@@ -12,7 +12,8 @@ class HomeViewModel(private val repository: MovieRepository) : BaseViewModel() {
     val error: MutableLiveData<String> = MutableLiveData()
 
     fun loadData(page: Int) {
-        val disposable = repository.getMovies(page).observeOn(AndroidSchedulers.mainThread())
+        val disposable = repository.getMovies(page)
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
                 movies.value = it
