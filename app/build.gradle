@@ -40,14 +40,13 @@ dependencies {
 
     // Design
     implementation 'com.google.android.material:material:' + rootProject.materialVersion
-    implementation 'androidx.cardview:cardview:' + rootProject.recyclerViewVersion
-    implementation 'androidx.recyclerview:recyclerview:' + rootProject.recyclerViewVersion
     implementation 'androidx.annotation:annotation:' + rootProject.annotationVersion
     implementation 'androidx.constraintlayout:constraintlayout:' + rootProject.constraintLayoutVersion
 
     // RoomDatabase
     implementation "androidx.room:room-rxjava2:$roomDatabaseVersion"
     implementation "androidx.room:room-runtime:$roomDatabaseVersion"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$roomDatabaseVersion"
 
     // Retrofit - OkHttp
