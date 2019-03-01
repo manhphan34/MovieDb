@@ -3,6 +3,8 @@ package com.example.moviedb.base
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.moviedb.util.di.modules
+import org.koin.android.ext.android.startKoin
 
 abstract class BaseActivity<ViewModel : BaseViewModel> : AppCompatActivity() {
 

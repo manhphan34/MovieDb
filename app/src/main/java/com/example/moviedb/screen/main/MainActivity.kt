@@ -4,7 +4,6 @@ import android.os.Bundle
 import com.example.moviedb.R
 import com.example.moviedb.base.BaseActivity
 import com.example.moviedb.screen.home.HomeFragment
-import com.example.moviedb.util.Constant
 import com.example.moviedb.util.extension.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.activity_main.bottomNavigationMain
 import org.koin.androidx.viewmodel.ext.android.viewModel
