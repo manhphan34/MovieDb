@@ -8,18 +8,69 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class HomeViewModel(private val repository: MovieRepository) : BaseViewModel() {
-    val movies: MutableLiveData<List<Movie>> = MutableLiveData()
-    val error: MutableLiveData<String> = MutableLiveData()
+    val movies: MutableLiveData<MutableList<Movie>> = MutableLiveData()
+    val errorLoadMore: MutableLiveData<String> = MutableLiveData()
+    val errorRefresh: MutableLiveData<String> = MutableLiveData()
+    var currentPage = 1
+    val isFirstTimeLoadData: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply {
+        value = false
+    }
+    val isLoading: MutableLiveData<Boolean> = MutableLiveData<Boolean>().apply {
+        value = false
+    }
 
-    fun loadData(page: Int) {
+    fun loadMoreData(page: Int) {
+        isLoading.value = true
         val disposable = repository.getMovies(page)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({
-                movies.value = it
+                updateData(it.toMutableList())
+                isLoading.value = false
+                currentPage++
             }, {
-                error.value = it.message
+                isLoading.value = false
+                errorLoadMore.value = it.message
             })
         launchDisposable { disposable }
+    }
+
+    fun reFreshData() {
+        val disposable = repository.getMovies(currentPage)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                updateData(it.toMutableList())
+                currentPage++
+            }, {
+                errorRefresh.value = it.message
+            })
+        launchDisposable { disposable }
+    }
+
+    fun loadDataFirstTime() {
+        isFirstTimeLoadData.value = true
+        val disposable = repository.getMovies(currentPage)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe({
+                updateData(it.toMutableList())
+                isFirstTimeLoadData.value = false
+                currentPage++
+            }, {
+                isFirstTimeLoadData.value = false
+                errorRefresh.value = it.message
+            })
+        launchDisposable { disposable }
+    }
+
+    private fun updateData(movies: MutableList<Movie>) {
+        if (this.movies.value == null) {
+            this.movies.value = movies
+        } else {
+            val moviesCp: MutableList<Movie> = this.movies.value!!
+            moviesCp.addAll(movies)
+            this.movies.value = moviesCp
+        }
     }
 }
