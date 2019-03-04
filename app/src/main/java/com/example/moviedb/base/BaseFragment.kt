@@ -15,7 +15,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
     abstract val layoutRes: Int
     lateinit var viewBinding: ViewBinding
 
-    abstract fun initComponents(view: ViewDataBinding)
+    abstract fun initComponents(view: ViewBinding)
 
     override fun onCreateView(
         inflater: LayoutInflater,
