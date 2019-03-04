@@ -26,12 +26,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override val layoutRes: Int = R.layout.fragment_home
 
-    override fun initComponents(view: ViewDataBinding) {
+    override fun initComponents(view: FragmentHomeBinding) {
+        viewModel.movies.observe(viewLifecycleOwner, Observer {
+            homeAdapter.submitList(it as MutableList<Movie>)
+        })
         initRecycle()
         viewModel.loadData(1)
-        viewModel.movies.observe(this, Observer {
-            homeAdapter.submitList(it as MutableList<Movie>?)
-        })
     }
 
     private fun initRecycle() {
@@ -42,5 +42,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun openDetailMovie(movie: Movie) {
+
     }
 }

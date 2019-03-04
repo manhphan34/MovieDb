@@ -17,7 +17,7 @@ class HomeAdapter(private val itemClickListener: ((Movie) -> Unit)? = null) :
         }
 
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }) {
 
@@ -31,8 +31,8 @@ class HomeAdapter(private val itemClickListener: ((Movie) -> Unit)? = null) :
             parent, false
         ).apply {
             root.setOnClickListener {
-                movie?.apply {
-                    itemClickListener?.invoke(this)
+                movie?.let {
+                    itemClickListener?.invoke(it)
                 }
             }
         }
